@@ -66,17 +66,17 @@ $(document).ready(()=>{
     // "feeling of sadness, pessimism about the future, or tendency to weep?",  this qn moved to html page of chat
     "Any feeling of guilt?",
     "Feel like to commit suicide",
-    // "Having any difficulty sleeping",
-    // "Feeling restless or disturbed at night",
-    // "Experince of waking in early hours of the morning and unable to fall asleep again",
-    // "Work and Interest:Absence from work after treatment or recovery may rate <4",
-    // "Restlessness and axiety",
-    // "Psychiatric anxiety",
-    // "Somatic anxiety:Gastrointestinal, indigestion, cardiovascular, palpitations, headaches, respiratory, genitourinary, etc",
-    // "General somatic symptoms:Heaviness in limbs, back, or head; diffuse backache; loss of energy and fatigability",
-    // "Genital Symptoms:Loss of libido, menstrual disturbances",
-    // "Hypochondriasis",
-    // "Weight loss"
+    "Having any difficulty sleeping",
+    "Feeling restless or disturbed at night",
+    "Experince of waking in early hours of the morning and unable to fall asleep again",
+    "Work and Interest:Absence from work after treatment or recovery may rate <4",
+    "Restlessness and axiety",
+    "Psychiatric anxiety",
+    "Somatic anxiety:Gastrointestinal, indigestion, cardiovascular, palpitations, headaches, respiratory, genitourinary, etc",
+    "General somatic symptoms:Heaviness in limbs, back, or head; diffuse backache; loss of energy and fatigability",
+    "Genital Symptoms:Loss of libido, menstrual disturbances",
+    "Hypochondriasis",
+    "Weight loss"
 
 ]
     var userRep=[]
