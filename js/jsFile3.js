@@ -69,13 +69,13 @@ $(document).ready(()=>{
     "Having any difficulty sleeping",
     "Feeling restless or disturbed at night",
     "Experince of waking in early hours of the morning and unable to fall asleep again",
-    "Work and Interest:Absence from work after treatment or recovery may rate <4",
+    "Work and Interest:Absence from work",
     "Restlessness and axiety",
     "Psychiatric anxiety",
-    "Somatic anxiety:Gastrointestinal, indigestion, cardiovascular, palpitations, headaches, respiratory, genitourinary, etc",
-    "General somatic symptoms:Heaviness in limbs, back, or head; diffuse backache; loss of energy and fatigability",
+    "Somatic anxiety: indigestion, cardiovascular, palpitations, headaches?",
+    "General somatic symptoms:Heaviness in limbs, back, or head; diffuse backache; loss of energy and fatigability?",
     "Genital Symptoms:Loss of libido, menstrual disturbances",
-    "Hypochondriasis",
+    "Hypochondriasis or worriness",
     "Weight loss"
 
 ]
