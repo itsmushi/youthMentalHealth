@@ -2,7 +2,9 @@
 var link="sysReply.php"
 var chatAnimation=""
 var finished_qns=false;
-var userResult=`
+var sum=0
+var notLessToSum=20
+var userResultPos=`
 <div class="row syst_reply">
 <!-- div for system reply -->
 <div class="col-4 text-left">
@@ -15,6 +17,19 @@ var userResult=`
   <li>Help them to appriciate live and join in their positive hobbies or activities</li>
   <li>You can also advice to them to see a therapist or call 0720 000 003 for help</li>
 </ul>
+</div>
+
+</div>
+
+`
+var userResultNeg=`
+<div class="row syst_reply">
+<!-- div for system reply -->
+<div class="col-4 text-left">
+  
+ 
+<p> From the diagnosis it looks that the person diagnosised in Mentally Health, so maybe check for other problems</p>
+
 </div>
 
 </div>
@@ -61,7 +76,7 @@ $(document).ready(()=>{
     // "General somatic symptoms:Heaviness in limbs, back, or head; diffuse backache; loss of energy and fatigability",
     // "Genital Symptoms:Loss of libido, menstrual disturbances",
     // "Hypochondriasis",
-    // "Weight loss",
+    // "Weight loss"
 
 ]
     var userRep=[]
@@ -90,6 +105,8 @@ $(document).ready(()=>{
             </div>
             </div>
                 `
+                console.log(typeof(parseInt(fired_button_value)))
+                sum=parseInt(fired_button_value)+sum;
                 userRep.push(fired_button_value);
             $(userReply).appendTo(".text-chatted");
             $(".btn-to-reply").attr("disabled", "disabled")
@@ -117,18 +134,21 @@ $(document).ready(()=>{
                     })
                     finished_qns=true
                     $(".btn-to-reply").remove();
-                    console.log(typeOf(sentVal))
-                    $(userResult).appendTo(".text-chatted");
+
+                    console.log(sum)
+                    if(sum<notLessToSum){
+                        $(userResultPos).appendTo(".text-chatted");
+                    }
+                    else{
+                        $(userResultNeg).appendTo(".text-chatted");
+                    }
+                  
                    
             }
 
 
             i=i+1
-            console.log(i)
-           
-
-
-            
+                       
             if(finished_qns==false){
             
 
@@ -154,10 +174,6 @@ $(document).ready(()=>{
 
                $("<p>dsf</p>").appendTo(".btnrow");
            
-           
-          
-                
-          
            
             
                 },3000)
