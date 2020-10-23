@@ -1,8 +1,10 @@
 
-var link="sysReply.php"
+var link="https://mental-health-status.herokuapp.com/diagnose"
 var chatAnimation=""
 var finished_qns=false;
-var userResult=`
+var sum=0
+var notLessToSum=20
+var userResultPos=`
 <div class="row syst_reply">
 <!-- div for system reply -->
 <div class="col-4 text-left">
@@ -20,8 +22,35 @@ var userResult=`
 </div>
 
 `
+var userResultNeg=`
+<div class="row syst_reply">
+<!-- div for system reply -->
+<div class="col-4 text-left">
+  
+ 
+<p> From the diagnosis it looks that the person diagnosised in Mentally Health, so maybe check for other problems</p>
+
+</div>
+
+</div>
+
+`
 
 $(document).ready(()=>{
+
+    var p1={
+        "q1":"0",
+        "q2":"0",
+        "q3":"0",
+        "q4":"0",
+        "q5":"0",
+        "q6":"0",
+        "q7":"0",
+        "q8":"0",
+        "q9":"0"
+    }
+    
+
 
     var fired_button = $("button").val(); 
     var chatAnimation=`
@@ -48,21 +77,16 @@ $(document).ready(()=>{
 
     //these are the questions to be asked
     qnArr=[
-    // "feeling of sadness, pessimism about the future, or tendency to weep?",  this qn moved to html page of chat
-    "Any feeling of guilt?",
-    "Feel like to commit suicide",
-    // "Having any difficulty sleeping",
-    // "Feeling restless or disturbed at night",
-    // "Experince of waking in early hours of the morning and unable to fall asleep again",
-    // "Work and Interest:Absence from work after treatment or recovery may rate <4",
-    // "Restlessness and axiety",
-    // "Psychiatric anxiety",
-    // "Somatic anxiety:Gastrointestinal, indigestion, cardiovascular, palpitations, headaches, respiratory, genitourinary, etc",
-    // "General somatic symptoms:Heaviness in limbs, back, or head; diffuse backache; loss of energy and fatigability",
-    // "Genital Symptoms:Loss of libido, menstrual disturbances",
-    // "Hypochondriasis",
-    // "Weight loss",
-
+    // "Little interest or pleasure in doing things?",  this qn moved to html page of chat
+    "Feeling down, depressed, or hopeless?",
+    "Trouble falling or staying asleep, or sleeping too much?",
+    "Feeling tired or having little energy?",
+    "Poor appetite or overeating?",
+    "Feeling bad about yourself — or that you are a failure or have let yourself or your family down?",
+    "Trouble concentrating on things, such as reading the newspaper or watching television?",
+    "Moving or speaking so slowly that other people could have noticed? Or so fidgety or restless that you have been moving a lot more than usual?",
+    "Thoughts that you would be better off dead, or thoughts of hurting yourself in some way?"
+   
 ]
     var userRep=[]
     var i=-1
@@ -90,6 +114,8 @@ $(document).ready(()=>{
             </div>
             </div>
                 `
+                console.log(typeof(parseInt(fired_button_value)))
+                sum=parseInt(fired_button_value)+sum;
                 userRep.push(fired_button_value);
             $(userReply).appendTo(".text-chatted");
             $(".btn-to-reply").attr("disabled", "disabled")
@@ -100,9 +126,20 @@ $(document).ready(()=>{
             if(i==(qnArr.length)-1){    //when qn to ask are over
                
                 sentVal= (userRep);
+                var p2=sentVal
+                var k=0;
+                for(var key in p1){
+                    while(k<9){
+                     p1[key]=p2[k];
+                     break
+                    }
+                 k+=1
+                
+             }
+                
                 $.post(link,
                     {
-                        message: sentVal
+                        message: p1
                     },
                     function(data, status){
                        
@@ -111,24 +148,37 @@ $(document).ready(()=>{
                         
                         // var repliedText=repliedText.message
                         //console.log(repliedText)
-                        console.log(typeOf((sentVal)))
+                        
+                       console.log(status);
+                       console.log(data);
+                    
+                   
+
+                        // for(var key in p1){
+                        //     p1[key]="4";
+                        // }
+                        // console.log(p1);
+
 
                
                     })
                     finished_qns=true
                     $(".btn-to-reply").remove();
-                    console.log(typeOf(sentVal))
-                    $(userResult).appendTo(".text-chatted");
+
+                    console.log(sum)
+                    if(sum<notLessToSum){
+                        $(userResultPos).appendTo(".text-chatted");
+                    }
+                    else{
+                        $(userResultNeg).appendTo(".text-chatted");
+                    }
+                  
                    
             }
 
 
             i=i+1
-            console.log(i)
-           
-
-
-            
+                       
             if(finished_qns==false){
             
 
@@ -155,14 +205,10 @@ $(document).ready(()=>{
                $("<p>dsf</p>").appendTo(".btnrow");
            
            
-          
-                
-          
-           
             
-                },3000)
+                },300)
 
-            },2000)
+            },200)
             }
 
 
