@@ -137,31 +137,77 @@ $(document).ready(()=>{
                 
              }
                 
-                $.post(link,
-                    {
-                        message: p1
-                    },
-                    function(data, status){
+                // $.post(link,
+                //     {
+                //         message: p1
+                //     },
+                //     function(data, status){
                        
-                        // //console.log(data)
-                        // var repliedText=JSON.parse(data)
+                //         // //console.log(data)
+                //         // var repliedText=JSON.parse(data)
                         
-                        // var repliedText=repliedText.message
-                        //console.log(repliedText)
+                //         // var repliedText=repliedText.message
+                //         //console.log(repliedText)
                         
-                       console.log(status);
-                       console.log(data);
+                //        console.log(status);
+                //        console.log(data);
                     
                    
 
-                        // for(var key in p1){
-                        //     p1[key]="4";
-                        // }
-                        // console.log(p1);
+                //         // for(var key in p1){
+                //         //     p1[key]="4";
+                //         // }
+                //         // console.log(p1);
 
 
                
-                    })
+                //     })
+
+              var  p1={
+    "q1":"1",
+    "q2":"2",
+    "q3":"3",
+    "q4":"3",
+    "q5":"0",
+    "q6":"3",
+    "q7":"0",
+    "q8":"0",
+    "q9":"0"
+}
+
+                console.log(p1)
+                
+
+                    $.ajax({
+                        type: "POST",
+                        crossDomain: true,
+                        url: link,
+                        headers: {  'Access-Control-Allow-Origin': 'https://mental-health-status.herokuapp.com/diagnose' },
+                        data: p1,
+                        dataType: 'jsonp',
+                        /* etc */
+                        success: function(jsondata){
+                           // console.log(status);
+                            console.log(jsondata);
+                         
+                        }
+                     })
+
+                     $.ajax({
+                        type: "GET",
+                        crossDomain: true,
+                        url: link,
+                        headers: {  'Access-Control-Allow-Origin': 'https://mental-health-status.herokuapp.com/diagnose' },
+                        data: p1,
+                        dataType: 'jsonp',
+                        /* etc */
+                        success: function(jsondata){
+                           // console.log(status);
+                            console.log(jsondata);
+                         
+                        }
+                     })
+
                     finished_qns=true
                     $(".btn-to-reply").remove();
 
