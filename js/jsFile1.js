@@ -143,6 +143,15 @@ $(document).ready(()=>{
                     .done(function( data ) {
                         console.log( data );
                         result=data.status
+                        if(result<2){
+                            console.log(result)
+                            $(userResultNeg).appendTo(".text-chatted");
+                            
+                        }
+                        else{
+                            console.log(result)
+                            $(userResultPos).appendTo(".text-chatted");
+                        }
                      });
 
                 //get request to receive the answers from the model
@@ -159,13 +168,7 @@ $(document).ready(()=>{
                     $(".btn-to-reply").remove();
 
                       typeof(result);
-                    if(result<2){
-                        $(userResultNeg).appendTo(".text-chatted");
-                        
-                    }
-                    else{
-                        $(userResultPos).appendTo(".text-chatted");
-                    }
+                   
                   
                    
             }
