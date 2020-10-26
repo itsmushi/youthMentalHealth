@@ -163,47 +163,44 @@ $(document).ready(()=>{
                
                 //     })
 
-              var  p1={
-    "q1":"1",
-    "q2":"2",
-    "q3":"3",
-    "q4":"3",
-    "q5":"0",
-    "q6":"3",
-    "q7":"0",
-    "q8":"0",
-    "q9":"0"
-}
+              var  p1={"q1":1,"q2":2,"q3":3,"q4":3,"q5":0,"q6":3,"q7":0,"q8":0,"q9":0}
 
-                console.log(p1)
+                console.log(typeof(p1))
+                
                 
 
-                    $.ajax({
-                        type: "POST",
-                        crossDomain: true,
-                        url: link,
-                        headers: {  'Access-Control-Allow-Origin': 'https://mental-health-status.herokuapp.com/diagnose' },
-                        data: p1,
-                        dataType: 'jsonp',
-                        /* etc */
-                        success: function(jsondata){
-                           // console.log(status);
-                            console.log(jsondata);
+                    // $.ajax({
+                    //     type: "POST",
+                    //     crossDomain: true,
+                    //     url: link,
+                    //     headers: {  'Access-Control-Allow-Origin': 'https://mental-health-status.herokuapp.com/diagnose',
+                                
+                    //                 'Access-Control-Allow-Methods': 'POST',
+                    //                 'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+                    // },
+                    //     data: p1,
+                    //     dataType: 'json',
+                    //     /* etc */
+                    //     success: function(jsondata){
+                    //        // console.log(status);
+                    //         console.log(jsondata);
                          
-                        }
-                     })
+                    //     }
+                    //  })
+                    console.log("dsf")
 
-                     $.ajax({
+                    $.ajax({
                         type: "GET",
                         crossDomain: true,
                         url: link,
-                        headers: {  'Access-Control-Allow-Origin': 'https://mental-health-status.herokuapp.com/diagnose' },
-                        data: p1,
-                        dataType: 'jsonp',
+                       headers: {  'Access-Control-Allow-Origin': 'https://mental-health-status.herokuapp.com/diagnose' },
+                        //data: p1,
+                        dataType: 'json',
                         /* etc */
                         success: function(jsondata){
                            // console.log(status);
                             console.log(jsondata);
+                            console.log("dsf")
                          
                         }
                      })
