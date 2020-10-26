@@ -137,16 +137,22 @@ $(document).ready(()=>{
                 console.log(p1)
                 
                 //post request to send data to the model
-                $.post( "https://mental-health-status.herokuapp.com/diagnose",p1)
+                //$.post( "https://mental-health-status.herokuapp.com/diagnose",p1)
+
+                $.post( link, p1)
+                    .done(function( data ) {
+                        console.log( data );
+                        result=data.status
+                     });
 
                 //get request to receive the answers from the model
-                    $.get( link, function( data ) {
-                        console.log(typeof(data));
-                        console.log(data.status);
-                        result=data.status
+                    // $.get( link, function( data ) {
+                    //     console.log(typeof(data));
+                    //     console.log(data.status);
+                    //     result=data.status
 
 
-                      });
+                    //  });
                       console.log("done")
 
                     finished_qns=true
