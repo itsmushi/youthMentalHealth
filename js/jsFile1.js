@@ -3,6 +3,7 @@ var link="https://mental-health-status.herokuapp.com/diagnose"
 var chatAnimation=""
 var finished_qns=false;
 var sum=0
+var result
 var notLessToSum=20
 var userResultPos=`
 <div class="row syst_reply">
@@ -93,12 +94,7 @@ $(document).ready(()=>{
 
 //initial code before starting to chat goes here
 
-
-
-//for(i=0;i<qnArr.length;i++){
-
-    
-        
+ 
         $("button").click(function(){
 
 
@@ -114,7 +110,7 @@ $(document).ready(()=>{
             </div>
             </div>
                 `
-                console.log(typeof(parseInt(fired_button_value)))
+               
                 sum=parseInt(fired_button_value)+sum;
                 userRep.push(fired_button_value);
             $(userReply).appendTo(".text-chatted");
@@ -137,88 +133,36 @@ $(document).ready(()=>{
                 
              }
                 
-                // $.post(link,
-                //     {
-                //         message: p1
-                //     },
-                //     function(data, status){
-                       
-                //         // //console.log(data)
-                //         // var repliedText=JSON.parse(data)
-                        
-                //         // var repliedText=repliedText.message
-                //         //console.log(repliedText)
-                        
-                //        console.log(status);
-                //        console.log(data);
-                    
-                   
-
-                //         // for(var key in p1){
-                //         //     p1[key]="4";
-                //         // }
-                //         // console.log(p1);
-
-
                
-                //     })
-
-              var  p1={"q1":1,"q2":2,"q3":3,"q4":3,"q5":0,"q6":3,"q7":0,"q8":0,"q9":0}
-
-                console.log(typeof(p1))
+                console.log(p1)
                 
-                
+                //post request to send data to the model
+                $.post( "https://mental-health-status.herokuapp.com/diagnose",p1)
 
-                    // $.ajax({
-                    //     type: "POST",
-                    //     crossDomain: true,
-                    //     url: link,
-                    //     headers: {  'Access-Control-Allow-Origin': 'https://mental-health-status.herokuapp.com/diagnose',
-                                
-                    //                 'Access-Control-Allow-Methods': 'POST',
-                    //                 'Access-Control-Allow-Headers': 'Content-Type, Authorization'
-                    // },
-                    //     data: p1,
-                    //     dataType: 'json',
-                    //     /* etc */
-                    //     success: function(jsondata){
-                    //        // console.log(status);
-                    //         console.log(jsondata);
-                         
-                    //     }
-                    //  })
-                    console.log("dsf")
+                //get request to receive the answers from the model
+                    $.get( link, function( data ) {
+                        console.log(typeof(data));
+                        console.log(data.status);
+                        result=data.status
 
-                    $.ajax({
-                        type: "GET",
-                        crossDomain: true,
-                        url: link,
-                       headers: {  'Access-Control-Allow-Origin': 'https://mental-health-status.herokuapp.com/diagnose' },
-                        //data: p1,
-                        dataType: 'json',
-                        /* etc */
-                        success: function(jsondata){
-                           // console.log(status);
-                            console.log(jsondata);
-                            console.log("dsf")
-                         
-                        }
-                     })
+
+                      });
+                      console.log("done")
 
                     finished_qns=true
                     $(".btn-to-reply").remove();
 
-                    console.log(sum)
-                    if(sum<notLessToSum){
-                        $(userResultPos).appendTo(".text-chatted");
+                      typeof(result);
+                    if(result<2){
+                        $(userResultNeg).appendTo(".text-chatted");
+                        
                     }
                     else{
-                        $(userResultNeg).appendTo(".text-chatted");
+                        $(userResultPos).appendTo(".text-chatted");
                     }
                   
                    
             }
-
 
             i=i+1
                        
@@ -249,32 +193,16 @@ $(document).ready(()=>{
            
            
             
-                },300)
+                },3000)
 
-            },200)
+            },2000)
             }
 
 
-           // alert(fired_button);
-    
-           // attach the user sent message to the chatted-texts
-
-            
-
-            
-            
-           
     
         } ) 
     
-    // }
-    //     console.log(userRep)
-       
-    // console.log(typeof(userRep))
-
-
-
-
+   
 })
 
 function reply(no){
